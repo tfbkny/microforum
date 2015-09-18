@@ -1,0 +1,41 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @posted_by = "#{User.find(@comment.user_id).first_name} #{User.find(@comment.user_id).last_name}"%>
+  <%#= @comment.user %>
+</p>
+
+<p>
+  <strong>Topic:</strong>
+  <%= @topic_title = Topic.find(@comment.topic_id).title %>
+  <%#= @comment.topic %>
+</p>
+
+<p>
+  <strong>Post:</strong>
+  <%#= @comment.post %>
+  <%= @post_excerpt = truncate(Post.find(@comment.post_id).content, :length =>33) %>
+</p>
+
+<p>
+  <strong>Content:</strong>
+  <%= @comment.content %>
+</p>
+
+<p>
+  <strong>Votes:</strong>
+  <%= @comment.votes %>
+</p>
+
+<p>
+  <strong>Comment: </strong> This is a comment in
+  <%if @comment.comment_id.nil? %>
+    <%=" reply to a post."%>
+  <%else%>
+    <%=" reply to a comment."%>
+  <%end%>
+</p>
+
+<%= link_to 'Edit', edit_comment_path(@comment) %> |
+<%= link_to 'Back', comments_path %>

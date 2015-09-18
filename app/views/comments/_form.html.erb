@@ -1,0 +1,47 @@
+<%= form_for(@comment) do |f| %>
+  <% if @comment.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@comment.errors.count, "error") %> prohibited this comment from being saved:</h2>
+
+      <ul>
+      <% @comment.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <!-- The user will be set by current_user after implementing authentication via Session  -->
+  <div class="field">
+    <%= f.label :user_id %><br>
+    <%= f.text_field :user_id %>
+  </div>
+  <!-- Topic ID must be set by using the topic of the post which called the comment partial via "Reply" -->
+  <div class="field">
+    <%= f.label :topic_id %><br>
+    <%= f.text_field :topic_id %>
+  </div>
+  <!-- Post ID  must be set by the Topic that loaded the comment partial via "Reply"-->
+  <div class="field">
+    <%= f.label :post_id %><br>
+    <%= f.text_field :post_id %>
+  </div>
+
+  <div class="field">
+    <%= f.label :content %><br>
+    <%= f.text_area :content %>
+  </div>
+  <!-- Votes must be implemented using a flag checking if user has already voted (checking against session cookie?) -->
+  <div class="field">
+    <%= f.label :votes %><br>
+    <%= f.number_field :votes %>
+  </div>
+  <!-- comment ID will be set by reply on comments (not the one on a post) this will serve to group
+  and identify replies that belong to the the same comment -->
+  <div class="field">
+    <%= f.label :comment_id %><br>
+    <%= f.text_field :comment_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

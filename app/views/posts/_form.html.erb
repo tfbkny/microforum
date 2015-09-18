@@ -1,0 +1,56 @@
+<%= form_for(@post) do |f| %>
+  <% if @post.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>
+
+      <ul>
+      <% @post.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%# Don't showing full name when the action calling the form partial is "new" %>
+  <% if @post.blank?%>
+    <p>
+      <strong>User: </strong>
+      <%# Added full_name for display purposes originally would instead show the object hex such <User:0x...> when using @post.user%>
+      <%full_name = @post.user.first_name + " " + @post.user.last_name %>
+      <%= full_name %>
+    </p>
+  <% end %>
+
+  <%# Note: At this time once a post has been associated with a topic upon creation (new)
+  we can't allow modifying it. For that to happen we would need to also propagate the
+  changes to update all the comments and comments of comments that shared the same topic id %>
+
+  <%# We display the dropdown with all available topics when creating a new post %>
+  <%if (@topic.present?) || @post.content.nil? %>
+    <div class="field">
+      <%= f.label :topic_id %><br>
+      <%@topics = Topic.all %>
+      <%= select_tag "post[topic_id]", options_from_collection_for_select(@topics, "id", "title") %>
+    </div>
+  <% elsif @post.nil? %>
+  <%# We also skip displaying topic when the action calling the form partial is "new" and if the form
+  is not called from the "new" action, then we show the post's topic, but we don't allow editing %>
+    <div>
+      <p><%= @post_topic = Topic.find(params[:id]).title %></p>
+    </div>
+    <%end%>
+  <div class="field">
+    <%= f.label :content %><br>
+    <%= f.text_area :content %>
+  </div>
+
+  <!-- Votes editing capability should be only available to admins it at all -->
+  <!-- <div class="field">
+    <%= f.label :votes %><br>
+    <%= f.number_field :votes %>
+  </div> -->
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,69 @@
+<%= form_for(@user) do |f| %>
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+      <ul>
+      <% @user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :first_name %><br>
+    <%= f.text_field :first_name %>
+  </div>
+  <div class="field">
+    <%= f.label :last_name %><br>
+    <%= f.text_field :last_name %>
+  </div>
+  <!-- Ideally email (and the whole signup process) should be set only after a verification
+  email has been sent and a reply received to ensure the the email is own by the subscriber -->
+  <div class="field">
+    <%= f.label :email %><br>
+    <%= f.text_field :email %>
+  </div>
+  <div class="field">
+    <%= f.label :password %><br>
+    <%= f.password_field :password %>
+  </div>
+  <div class="field">
+    <%= f.label :password_confirmation %><br>
+    <%= f.password_field :password_confirmation %>
+  </div>
+
+  <!-- Votes should be either removed or made accessible only to admins to reset/set fix issues if needed -->
+  <!-- <div class="field">
+    <%= f.label :votes %><br>
+    <%= f.number_field :votes %>
+  </div> -->
+
+  <!-- flags to set admin, moderators and active flags for users should be only available to admins, lef there as reminder -->
+  <!-- <div class="field">
+    <%= f.label :is_admin %><br>
+    <%= f.check_box :is_admin %>
+  </div>
+  <div class="field">
+    <%= f.label :is_moderator %><br>
+    <%= f.check_box :is_moderator %>
+  </div>
+  <div class="field">
+    <%= f.label :active %><br>
+    <%= f.check_box :active %>
+  </div> -->
+
+  <!-- last_login and last_logout should be set by the login and logout events left here as a reminder -->
+  <!-- <div class="field">
+    <%= f.label :last_login %><br>
+    <%= f.datetime_select :last_login %>
+  </div>
+  <div class="field">
+    <%= f.label :last_logout %><br>
+    <%= f.datetime_select :last_logout %>
+  </div> -->
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

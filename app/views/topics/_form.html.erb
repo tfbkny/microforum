@@ -1,0 +1,50 @@
+<%= form_for(@topic) do |f| %>
+  <% if @topic.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@topic.errors.count, "error") %> prohibited this topic from being saved:</h2>
+
+      <ul>
+      <% @topic.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :title %><br>
+    <%= f.text_field :title %>
+  </div>
+
+  <!-- ############################################## -->
+  <!-- # WE NEED TO ADD USER FROM CURRENT LOGGED IN #
+       # USER TO SAVE THAT WITH THE DB RECORD!!!    # -->
+  <!-- ############################################## -->
+
+  <%# conditional will show full name when the action calling the form is "new" (or will get error since id would be nil)%>
+  <% if @topic.id.present? %>
+  <%#binding.pry%>
+  <div class="field">
+    <% @user_full_name = "#{User.find(@topic.user_id).first_name} #{User.find(@topic.user_id).last_name}"%>
+    <strong>User: </strong><%= @user_full_name%>
+  </div>
+  <%end%>
+
+  <!-- User will be set by the current_user (implemented at ApplicationController level as a helper)
+  left commented out here at the moment for dev/test to create test entry manually if needed -->
+  <div class="field">
+    <%= f.label :user_id %><br>
+    <%= f.text_field :user_id %>
+  </div>
+
+  <!-- Archived should be accessible only to admins. Admin feature to implement once everything else is working  -->
+  <!-- <div class="field">
+    <%= f.label :archived %><br>
+    <%= f.check_box :archived %>
+  </div> -->
+
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
