@@ -36,6 +36,7 @@
   <%# We also skip displaying topic when the action calling the form partial is "new" and if the form
   is not called from the "new" action, then we show the post's topic, but we don't allow editing %>
     <div>
+      <%# !!! Remember to move this to the controller !!! %>
       <p><%= @post_topic = Topic.find(params[:id]).title %></p>
     </div>
     <%end%>
