@@ -6,8 +6,8 @@ Rails.application.routes.draw do
   get 'logout', to: 'sessions#destroy', as: 'logout'
 
   #routes for main page
-  get 'page/index'
-  root 'page#index'
+  get 'posts/index'
+  root 'posts#index'
 
   #routes for CRUDin' forum's elements
   resources :comments

@@ -1,0 +1,49 @@
+<!-- <p id="notice"><%#= notice %></p> -->
+
+<div id="posts-list" >
+  <h1>Listing Posts</h1>
+
+<table style="text-align:center; border-collapse:collapse;">
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Topic</th>
+      <th>Content</th>
+      <th>Votes</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @posts.each do |post| %>
+    <% @topic_title = Topic.find(post.topic_id).title%>
+    <% @user_full_name = "#{User.find(post.user_id).first_name} #{User.find(post.user_id).last_name}" %>
+      <tr style="background-color:#eee; border:1px solid #ccc">
+        <td style="width:10%;"><%= @user_full_name %></td> <%# changed to user_id from .user as it was showing the object value <0x0....>, later modified ot show the user's full name %>
+        <td style="width:10%;"><%= @topic_title %></td> <%# changed to topic_id from .topic as it was showing the object value <0x0....>, later modified to show the topic's title %>
+        <td style="width:50%; text-align:left;"><%= post.content %></td>
+        <td style="width:5%;"><%= post.votes %></td>
+        <td style="width:5%;"><%= link_to 'Show', post %></td>
+        <td style="width:5%;">
+          <%# show the Edit link only on the post that the currently logged in user can edit (per our authorize method for editing posts)%>
+          <% if current_user && post.user == current_user %>
+          <%= link_to 'Edit', edit_post_path(post) %>
+          <%end%>
+        </td>
+        <td style="width:5%;">
+          <%# show the Destroy link only on the post that the currently logged in user as we did for the eidot link above%>
+          <% if current_user && post.user == current_user %>
+          <%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %>
+          <%end%>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+<%# Show the link to Create a new post only when the user is logged in %>
+<% if current_user %>
+  <%= link_to 'New Post', new_post_path %>
+<% end %>
+</div>

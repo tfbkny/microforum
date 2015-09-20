@@ -11,36 +11,65 @@
     </div>
   <% end %>
   <!-- The user will be set by current_user after implementing authentication via Session  -->
-  <div class="field">
-    <%= f.label :user_id %><br>
-    <%= f.text_field :user_id %>
-  </div>
+  <!-- <div class="field">
+    <%#= f.label :user_id %><br>
+    <%#= f.text_field :user_id %>
+  </div> -->
+
+  <%# Don't show full name when the action calling the form partial is "new" %>
+  <% if @comment.blank?%>
+    <p>
+      <strong>User: </strong>
+      <%# Added full_name for display purposes originally would instead show the object hex such <User:0x...> when using @post.user%>
+      <%full_name = @comment.user.first_name + " " + @comment.user.last_name %>
+      <%= full_name %>
+    </p>
+  <% end %>
+
+  <% if @comment.content.blank? #returns true, when it's a new comment%>
+    <%# Then we set a hidden field to be saved as in the comments table ideontifying the author of this comment%>
+    <%#= current_user%>
+    <%= f.hidden_field :user_id, :value => current_user.id %>
+  <% end %>
+
   <!-- Topic ID must be set by using the topic of the post which called the comment partial via "Reply" -->
-  <div class="field">
-    <%= f.label :topic_id %><br>
-    <%= f.text_field :topic_id %>
-  </div>
-  <!-- Post ID  must be set by the Topic that loaded the comment partial via "Reply"-->
-  <div class="field">
-    <%= f.label :post_id %><br>
-    <%= f.text_field :post_id %>
-  </div>
+  <%#= @post_topic_id = params[:topic_id] %>
+  <%= f.hidden_field :topic_id, :value => params[:topic_id]%>
+  <!-- <div class="field">
+    <%#= f.label :topic_id %><br>
+    <%#= f.text_field :topic_id %>
+  </div> -->
+
+
+  <!-- Post ID  must be set by the post that called the "new" action to create a comment via a "Reply to Post" button/link -->
+  <%#= @post_id = params[:post_id] %>
+  <%= f.hidden_field :post_id, :value => params[:post_id]%>
+  <!-- <div class="field">
+    <%#= f.label :post_id %><br>
+    <%#= f.text_field :post_id %>
+  </div> -->
 
   <div class="field">
-    <%= f.label :content %><br>
-    <%= f.text_area :content %>
+    <%#= f.label :content %><br>
+    <%= f.text_area :content, :size =>"60x10" %>
   </div>
-  <!-- Votes must be implemented using a flag checking if user has already voted (checking against session cookie?) -->
-  <div class="field">
-    <%= f.label :votes %><br>
-    <%= f.number_field :votes %>
-  </div>
-  <!-- comment ID will be set by reply on comments (not the one on a post) this will serve to group
-  and identify replies that belong to the the same comment -->
-  <div class="field">
-    <%= f.label :comment_id %><br>
-    <%= f.text_field :comment_id %>
-  </div>
+
+  <!-- Votes must be implemented using a flag possibly checking if user has already voted (and perhaps checking against session cookie) -->
+  <!-- <div class="field">
+    <%#= f.label :votes %><br>
+    <%#= f.number_field :votes %>
+  </div> -->
+
+  <!-- comment ID will be set by replying on comments (not the one on a post) this
+  will serve as a way to group and identify replies to the same comment -->
+  <strong><%#= params[:comment_id] %></strong>
+  <%= f.hidden_field :comment_id, :value => params[:comment_id]%>
+
+  <!-- <div class="field">
+    <%#= f.label :comment_id %><br>
+    <%#= f.text_field :comment_id %>
+  </div> -->
+
   <div class="actions">
     <%= f.submit %>
   </div>

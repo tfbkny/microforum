@@ -1,5 +1,6 @@
 class CommentsController < ApplicationController
   before_action :set_comment, only: [:show, :edit, :update, :destroy]
+  before_action :authorize, except: [:show, :index]
 
   # GET /comments
   # GET /comments.json
@@ -71,4 +72,15 @@ class CommentsController < ApplicationController
     def comment_params
       params.require(:comment).permit(:user_id, :topic_id, :post_id, :content, :votes, :comment_id)
     end
+
+    def authorize
+      if current_user.nil?
+        redirect_to login_url, alert: "Not authorized! Please log in."
+      else
+        if @comment && @comment.user != current_user
+          redirect_to root_path, alert: "Not authorized! Only #{@comment.user} has access to this post."
+        end
+      end
+    end
+
 end

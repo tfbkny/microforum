@@ -9,7 +9,8 @@ class PostsController < ApplicationController
   def index
     # we sort posts alphabetically in Ascending order by topic (thanks Jaden for the joins guidance/code!)
     # also sorting by creation date in Descending order.
-
+    @topics = Topic.all
+    @comments = Comment.all
     @posts = Post.all.joins(:topic).order("topics.title ASC").order("created_at DESC")
     #@topic_by_title = Topic.order(title: :asc)
     #@posts = Post.all.order("#{@topic_by_title} ASC").order("created_at DESC")
@@ -18,10 +19,12 @@ class PostsController < ApplicationController
   # GET /posts/1
   # GET /posts/1.json
   def show
+    @topics = Topic.all
   end
 
   # GET /posts/new
   def new
+    @topics = Topic.all
     @post = Post.new
   end
 
@@ -35,6 +38,7 @@ class PostsController < ApplicationController
     #@post = Post.new(post_params)
     #changed code so that when user is logged in, the post is connected to current_user
     @post = current_user.posts.build(post_params)
+    # binding.pry
     respond_to do |format|
       if @post.save
         format.html { redirect_to @post, notice: 'Post was successfully created.' }

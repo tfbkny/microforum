@@ -1,5 +1,4 @@
 <!-- <p id="notice"><%#= notice %></p> -->
-
 <p>
   <strong>User:</strong>
   <%# Added full_name for display purposes originally would instead show the object hex such <User:0x...> when using @post.user%>
@@ -23,5 +22,8 @@
   <%= @post.votes %>
 </p>
 
-<%= link_to 'Edit', edit_post_path(@post) %> |
+<%# show edit link only if the page is being viewed by a logged in user %>
+<%if current_user%>
+  <%= link_to 'Edit', edit_post_path(@post) %> |
+<%end%>
 <%= link_to 'Back', posts_path %>

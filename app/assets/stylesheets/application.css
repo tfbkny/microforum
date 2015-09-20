@@ -49,3 +49,15 @@ nav a:hover{
 #posts-list{
   margin:2%;
 }
+
+.user-full-name {
+  font-size: 1em;
+}
+
+.comments{
+  margin-left:4%;
+}
+
+#forum-view{
+    margin: 2%;
+}

@@ -29,7 +29,7 @@
   <%if (@topic.present?) || @post.content.nil? %>
     <div class="field">
       <%= f.label :topic_id %><br>
-      <%@topics = Topic.all %>
+      <%#@topics = Topic.all %>
       <%= select_tag "post[topic_id]", options_from_collection_for_select(@topics, "id", "title") %>
     </div>
   <% elsif @post.nil? %>
