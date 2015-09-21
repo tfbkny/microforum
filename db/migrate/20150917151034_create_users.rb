@@ -8,7 +8,7 @@ class CreateUsers < ActiveRecord::Migration
       t.integer :votes, default: 0
       t.boolean :is_admin, default: false
       t.boolean :is_moderator, defaul: false
-      t.boolean :active default: true
+      t.boolean :active, default: true
       t.timestamp :last_login
       t.timestamp :last_logout
 
