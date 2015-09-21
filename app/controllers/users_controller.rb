@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :authorize
 
   # GET /users
   # GET /users.json
@@ -76,4 +77,11 @@ class UsersController < ApplicationController
     def user_params
       params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation, :votes, :is_admin, :is_moderator, :active, :last_login, :last_logout)
     end
+
+    def authorize
+      if current_user.nil?
+        redirect_to login_url, alert: "Not authorized! Please log in."
+      end
+    end
+
 end

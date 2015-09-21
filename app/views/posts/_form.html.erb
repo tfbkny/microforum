@@ -42,13 +42,13 @@
     <%end%>
   <div class="field">
     <%= f.label :content %><br>
-    <%= f.text_area :content %>
+    <%= f.text_area :content, :size => "60x6"%>
   </div>
 
-  <!-- Votes editing capability should be only available to admins it at all -->
+  <%# Votes editing capability should be only available to admins it at all %>
   <!-- <div class="field">
-    <%= f.label :votes %><br>
-    <%= f.number_field :votes %>
+    <%#= f.label :votes %><br>
+    <%#= f.number_field :votes %>
   </div> -->
 
   <div class="actions">

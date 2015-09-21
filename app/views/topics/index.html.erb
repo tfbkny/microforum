@@ -1,8 +1,12 @@
-<p id="notice"><%= notice %></p>
+<!-- <p id="notice"><%#= notice %></p> -->
+<table border="0" width=100%>
+  <tr>
+    <td style="width:33%;">&nbsp;<td>
 
+    <td style="width:34%;">
 <h1>Listing Topics</h1>
 
-<table>
+<table id="index-list">
   <thead>
     <tr>
       <th>Title</th>
@@ -16,14 +20,14 @@
   <tbody>
     <% @topics.each do |topic| %>
       <tr>
-        <td><%= topic.title %></td>
+        <td><%= topic.title %>&nbsp;</td>
 
         <td><%= @user_full_name = "#{User.find(topic.user_id).first_name} #{User.find(topic.user_id).last_name}"%><%#changed from .user to .user_id, then set to show full_name%></td>
         <td><%= topic.archived %></td>
         <td><%= topic.votes %></td>
         <td><%= link_to 'Show', topic %></td>
         <td><%= link_to 'Edit', edit_topic_path(topic) %></td>
-        <td><%= link_to 'Destroy', topic, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%#= link_to 'Destroy', topic, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -32,3 +36,9 @@
 <br>
 
 <%= link_to 'New Topic', new_topic_path %>
+
+</td>
+
+    <td style="width:33%;">&nbsp;</td>
+  </tr>
+</table>

@@ -4,15 +4,30 @@
   <title>Microforum</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
+  <link href='https://fonts.googleapis.com/css?family=Tulpen+One' rel='stylesheet' type='text/css'>
+
+  <!-- bootstrap -->
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <!-- Optional theme -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
   <nav>
-    <%= link_to 'Home', root_path %> |
+    <span style="margin-left: 2%; font-family: 'Tulpen One', cursive; font-size:2.1em;line-height:1.2em ">
+      Microforum
+    </span>
+
+    <%= link_to 'Home', root_path %>|&nbsp;
     <% if current_user %>
-      <%= link_to 'Posts', posts_path %> |
-      Logged in as <%= current_user.email %>.
+      <!-- <%#= link_to 'Posts', posts_path %> | -->
+      Logged in as:  <%= current_user.email %>
       <%= link_to "Log Out", logout_path %>
     <% else %>
       <%= link_to "Sign Up", signup_path %> or
@@ -21,7 +36,7 @@
   </nav>
   <% flash.each do |key, value| %>
     <%= content_tag(:div, class: "alert alert-#{key}") do %>
-      <p style="border:1px dotted #aaa;width:220px;text-align:center"><%= value %></p>
+      <div class="alert-message-container"><div class="alert-message"><%= value %></div>
     <% end %>
   <% end %>
 

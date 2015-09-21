@@ -1,4 +1,8 @@
 <!-- <p id="notice"><%#= notice %></p> -->
+<table border="0" width=100%>
+  <tr>
+    <td style="width:30%;">&nbsp;<td>
+    <td style="width:40%;">
 <p>
   <strong>User:</strong>
   <%# Added full_name for display purposes originally would instead show the object hex such <User:0x...> when using @post.user%>
@@ -27,3 +31,8 @@
   <%= link_to 'Edit', edit_post_path(@post) %> |
 <%end%>
 <%= link_to 'Back', posts_path %>
+</td>
+
+    <td style="width:41%;">&nbsp;</td>
+  </tr>
+</table>

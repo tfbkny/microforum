@@ -1,5 +1,6 @@
 class TopicsController < ApplicationController
   before_action :set_topic, only: [:show, :edit, :update, :destroy]
+  before_action :authorize
 
   # GET /topics
   # GET /topics.json
@@ -71,4 +72,11 @@ class TopicsController < ApplicationController
     def topic_params
       params.require(:topic).permit(:title, :user_id, :archived, :votes)
     end
+
+    def authorize
+      if current_user.nil?
+        redirect_to login_url, alert: "Not authorized! Please log in."
+      end
+    end
+    
 end

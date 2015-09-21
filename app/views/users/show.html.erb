@@ -1,49 +1,56 @@
 <!-- <p id="notice"><%#= notice %></p> -->
+<table border="0" width=100% style="margin-top:2%;">
+  <tr>
+    <td style="width:40%;">&nbsp;<td>
+    <td style="width:20%;">
+    <p>
+      <strong>First name:</strong>
+      <%= @user.first_name %>
+    </p>
 
-<p>
-  <strong>First name:</strong>
-  <%= @user.first_name %>
-</p>
+    <p>
+      <strong>Last name:</strong>
+      <%= @user.last_name %>
+    </p>
 
-<p>
-  <strong>Last name:</strong>
-  <%= @user.last_name %>
-</p>
+    <p>
+      <strong>Email:</strong>
+      <%= @user.email %>
+    </p>
 
-<p>
-  <strong>Email:</strong>
-  <%= @user.email %>
-</p>
+    <p>
+      <strong>Votes:</strong>
+      <%= @user.votes %>
+    </p>
 
-<p>
-  <strong>Votes:</strong>
-  <%= @user.votes %>
-</p>
+    <p>
+      <strong>Is admin:</strong>
+      <%= @user.is_admin %>
+    </p>
 
-<p>
-  <strong>Is admin:</strong>
-  <%= @user.is_admin %>
-</p>
+    <p>
+      <strong>Is moderator:</strong>
+      <%= @user.is_moderator %>
+    </p>
 
-<p>
-  <strong>Is moderator:</strong>
-  <%= @user.is_moderator %>
-</p>
+    <p>
+      <strong>Active:</strong>
+      <%= @user.active %>
+    </p>
 
-<p>
-  <strong>Active:</strong>
-  <%= @user.active %>
-</p>
+    <p>
+      <strong>Last login:</strong>
+      <%= @user.last_login %>
+    </p>
 
-<p>
-  <strong>Last login:</strong>
-  <%= @user.last_login %>
-</p>
+    <p>
+      <strong>Last logout:</strong>
+      <%= @user.last_logout %>
+    </p>
 
-<p>
-  <strong>Last logout:</strong>
-  <%= @user.last_logout %>
-</p>
-
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+    <%= link_to 'Edit', edit_user_path(@user) %> |
+    <%= link_to 'Back', users_path %>
+    </td>
+    <td style="width:40%;">&nbsp;</td>
+  </tr>
+</table>

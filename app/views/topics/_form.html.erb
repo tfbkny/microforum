@@ -16,11 +16,6 @@
     <%= f.text_field :title %>
   </div>
 
-  <!-- ############################################## -->
-  <!-- # WE NEED TO ADD USER FROM CURRENT LOGGED IN #
-       # USER TO SAVE THAT WITH THE DB RECORD!!!    # -->
-  <!-- ############################################## -->
-
   <%# conditional will show full name when the action calling the form is "new" (or will get error since id would be nil)%>
   <% if @topic.id.present? %>
   <%#binding.pry%>
@@ -30,17 +25,23 @@
   </div>
   <%end%>
 
-  <!-- User will be set by the current_user (implemented at ApplicationController level as a helper)
-  left commented out here at the moment for dev/test to create test entry manually if needed -->
-  <div class="field">
-    <%= f.label :user_id %><br>
-    <%= f.text_field :user_id %>
-  </div>
+
+  <% if @topic.title.blank? #returns true, when it's a new topic%>
+    <%# Then we set a hidden field to be saved as in the comments table ideontifying the author of this comment%>
+    <%#= current_user%>
+    <%= f.hidden_field :user_id, :value => current_user.id %>
+  <% end %>
+  <%# User will be set by the current_user (implemented at ApplicationController level as a helper)
+  left commented out here at the moment for dev/test to create test entry manually if needed %>
+  <!-- <div class="field">
+    <%#= f.label :user_id %><br>
+    <%#= f.text_field :user_id %>
+  </div> -->
 
   <!-- Archived should be accessible only to admins. Admin feature to implement once everything else is working  -->
   <!-- <div class="field">
-    <%= f.label :archived %><br>
-    <%= f.check_box :archived %>
+    <%#= f.label :archived %><br>
+    <%#= f.check_box :archived %>
   </div> -->
 
 

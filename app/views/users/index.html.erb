@@ -1,5 +1,10 @@
 <!-- <p id="notice"><%#= notice %></p> -->
 
+<table id="user-index-list" border="0" width=100%>
+  <tr>
+    <td style="width:5%;">&nbsp;<td>
+
+    <td style="width:90%;">
 <h1>Listing Users</h1>
 
 <table>
@@ -21,18 +26,18 @@
   <tbody>
     <% @users.each do |user| %>
       <tr>
-        <td><%= user.first_name %></td>
-        <td><%= user.last_name %></td>
-        <td><%= user.email %></td>
-        <td><%= user.votes %></td>
-        <td><%= user.is_admin %></td>
-        <td><%= user.is_moderator %></td>
-        <td><%= user.active %></td>
-        <td><%= user.last_login %></td>
-        <td><%= user.last_logout %></td>
-        <td><%= link_to 'Show', user %></td>
-        <td><%= link_to 'Edit', edit_user_path(user) %></td>
-        <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td style="width:10%;"><%= user.first_name %></td>
+        <td style="width:10%;"><%= user.last_name %></td>
+        <td style="width:10%;"><%= user.email %></td>
+        <td style="width:6%;"><%= user.votes %></td>
+        <td style="width:10%;"><%= user.is_admin %></td>
+        <td style="width:10%;"><%= user.is_moderator %></td>
+        <td style="width:5%;"><%= user.active %></td>
+        <td style="width:10%;"><%= user.last_login %></td>
+        <td style="width:10%;"><%= user.last_logout %></td>
+        <td style="width:5%;"><%= link_to 'Show', user %></td>
+        <td style="width:5%;"><%= link_to 'Edit', edit_user_path(user) %></td>
+        <td style="width:5%;"><%#= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -41,3 +46,8 @@
 <br>
 
 <%= link_to 'New User', new_user_path %>
+</td>
+
+    <td style="width:5%;">&nbsp;</td>
+  </tr>
+</table>

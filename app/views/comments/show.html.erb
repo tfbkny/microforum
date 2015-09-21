@@ -1,42 +1,51 @@
 <!-- <p id="notice"><%#= notice %></p> -->
+<table border="0" width="100%" style="margin-top:2%;">
+  <tr>
+    <td style="width:33%;">&nbsp;<td>
 
-<p>
-  <strong>User:</strong>
-  <%= @posted_by = "#{User.find(@comment.user_id).first_name} #{User.find(@comment.user_id).last_name}"%>
-  <%#= @comment.user %>
-</p>
+    <td style="width:34%;">
+      <p>
+        <strong>User:</strong>
+        <%= @posted_by = "#{User.find(@comment.user_id).first_name} #{User.find(@comment.user_id).last_name}"%>
+        <%#= @comment.user %>
+      </p>
 
-<p>
-  <strong>Topic:</strong>
-  <%= @topic_title = Topic.find(@comment.topic_id).title %>
-  <%#= @comment.topic %>
-</p>
+      <p>
+        <strong>Under Topic:</strong>
+        <%= @topic_title = Topic.find(@comment.topic_id).title %>
+        <%#= @comment.topic %>
+      </p>
 
-<p>
-  <strong>Post:</strong>
-  <%#= @comment.post %>
-  <%= @post_excerpt = truncate(Post.find(@comment.post_id).content, :length =>33) %>
-</p>
+      <p>
+        <strong>Replied on Post:</strong>
+        <%#= @comment.post %>
+        <%= @post_excerpt = truncate(Post.find(@comment.post_id).content, length:33) %>
+      </p>
 
-<p>
-  <strong>Content:</strong>
-  <%= @comment.content %>
-</p>
+      <p>
+        <strong>Saying:</strong>
+        <%= @comment.content %>
+      </p>
 
-<p>
-  <strong>Votes:</strong>
-  <%= @comment.votes %>
-</p>
+      <p>
+        <strong>Comment Received Votes:</strong>
+        <%= @comment.votes %>
+      </p>
 
-<p>
-  <strong>Comment: </strong> This is a comment in
-  <%if @comment.comment_id.nil? %>
-    <%=" reply to a post."%>
-  <%else%>
-    <%=" reply to a comment."%>
-  <%end%>
-</p>
-<%if current_user %>
-<%= link_to 'Edit', edit_comment_path(@comment) %> |
-<%end%>
-<%= link_to 'Back', posts_path %>
+      <p>
+        <strong>Comment: </strong> This is a comment in
+        <%if @comment.comment_id.nil? %>
+          <%=" reply to a post."%>
+        <%else%>
+          <%=" reply to a comment."%>
+        <%end%>
+      </p>
+      <%if current_user %>
+      <%= link_to 'Edit', edit_comment_path(@comment) %> |
+      <%end%>
+      <%= link_to 'Back', posts_path %>
+    </td>
+
+    <td style="width:33%;">&nbsp;</td>
+  </tr>
+</table>

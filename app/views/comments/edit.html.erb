@@ -1,6 +1,14 @@
-<h1>Editing Comment</h1>
+<table border="0" width=100%>
+  <tr>
+    <td style="width:33%;">&nbsp;<td>
 
-<%= render 'form' %>
+    <td style="width:34%;">
+      <h1>Editing Comment</h1>
+      <%= render 'form' %>
+      <%= link_to 'Show', @comment %> |
+      <%= link_to 'Back', posts_path %>
+    </td>
 
-<%= link_to 'Show', @comment %> |
-<%= link_to 'Back', posts_path %>
+    <td style="width:33%;">&nbsp;</td>
+  </tr>
+</table>
