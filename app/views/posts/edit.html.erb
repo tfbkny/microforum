@@ -1,6 +1,15 @@
-<h1>Editing Post</h1>
+<table border="0" width="100%">
+  <tr>
+    <td style="width:30%;">&nbsp;<td>
+    <td style="width:40%;">
+      <div style="text-align:left;margin-left:2%; line-height:2em;color:#2095C9">
+          <h1>Editing Post</h1>
+      </div>
+      <%= render 'form' %>
+      <%= link_to 'Show', @post %> |
+      <%= link_to 'Back', posts_path %>
+    </td>
 
-<%= render 'form' %>
-
-<%= link_to 'Show', @post %> |
-<%= link_to 'Back', posts_path %>
+    <td style="width:30%;">&nbsp;</td>
+  </tr>
+</table>

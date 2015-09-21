@@ -1,43 +1,44 @@
 <!-- <p id="notice"><%#= notice %></p> -->
-<table border="0" width=100%>
+<table border="0" width="100%">
   <tr>
     <td style="width:33%;">&nbsp;<td>
 
     <td style="width:34%;">
-<h1>Listing Topics</h1>
+      <div style="text-align:left;margin-left:2%; line-height:2em;color:#2095C9">
+        <h1>Listing Topics</h1>
+      </div>
 
-<table id="index-list">
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>User</th>
-      <th>Archived</th>
-      <th>Votes</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+      <table id="index-list">
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>User</th>
+            <th>Archived</th>
+            <th>Votes</th>
+            <th colspan="3"></th>
+          </tr>
+        </thead>
 
-  <tbody>
-    <% @topics.each do |topic| %>
-      <tr>
-        <td><%= topic.title %>&nbsp;</td>
+        <tbody>
+          <% @topics.each do |topic| %>
+            <tr>
+              <td><%= topic.title %>&nbsp;</td>
 
-        <td><%= @user_full_name = "#{User.find(topic.user_id).first_name} #{User.find(topic.user_id).last_name}"%><%#changed from .user to .user_id, then set to show full_name%></td>
-        <td><%= topic.archived %></td>
-        <td><%= topic.votes %></td>
-        <td><%= link_to 'Show', topic %></td>
-        <td><%= link_to 'Edit', edit_topic_path(topic) %></td>
-        <td><%#= link_to 'Destroy', topic, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+              <td><%= @user_full_name = "#{User.find(topic.user_id).first_name} #{User.find(topic.user_id).last_name}"%><%#changed from .user to .user_id, then set to show full_name%></td>
+              <td><%= topic.archived %></td>
+              <td><%= topic.votes %></td>
+              <td><%= link_to 'Show', topic %></td>
+              <td><%= link_to 'Edit', edit_topic_path(topic) %></td>
+              <td><%#= link_to 'Destroy', topic, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
 
-<br>
+      <br>
 
-<%= link_to 'New Topic', new_topic_path %>
-
-</td>
+    <%= link_to 'New Topic', new_topic_path %>&nbsp;|&nbsp;<%= link_to 'Back to Posts', posts_path %>
+    </td>
 
     <td style="width:33%;">&nbsp;</td>
   </tr>

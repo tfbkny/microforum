@@ -1,8 +1,10 @@
 <!-- <p id="notice"><%#= notice %></p> -->
+<div style="text-align:left;margin-left:2%; line-height:2em;color:#2095C9">
+  <h1>Listing Comments</h1>
+</div>
 
-<h1>Listing Comments</h1>
 
-<table>
+<table id="index-list" border="0" style="border-collapse:collapse;background-color:#eee; ">
   <thead>
     <tr>
       <th>User</th>
@@ -17,21 +19,23 @@
 
   <tbody>
     <% @comments.each do |comment| %>
-      <tr>
-        <td><%= @posted_by = "#{User.find(comment.user_id).first_name} #{User.find(comment.user_id).last_name}"%></td><%# comment.user %>
-        <td><%= @topic_title = Topic.find(comment.topic_id).title %></td> <%# replaced comment.topic %>
-        <td><%= @post_excerpt = truncate(Post.find(comment.post_id).content, :length =>15) %></td><%#replaced comment.post %>
-        <td><%= comment.content %></td>
-        <td><%= comment.votes %></td>
+      <tr style="background-color:#eee; border:1px dotted #aaa;">
+        <td style="width:8%"><%= @posted_by = "#{User.find(comment.user_id).first_name} #{User.find(comment.user_id).last_name}"%></td><%# comment.user %>
+        <td style="width:8%"><%= @topic_title = Topic.find(comment.topic_id).title %></td> <%# replaced comment.topic %>
+        <td style="width:12%"><%= @post_excerpt = truncate(Post.find(comment.post_id).content, :length =>15) %></td><%#replaced comment.post %>
+        <td style="width:42%"><%= comment.content %></td>
+        <td  style="width:5%"><%= comment.votes %></td>
         <% if comment.comment_id.nil? %>
           <td>Comment on post id: <%= Post.find(comment.post_id).id %></td>
         <%else%>
-          <td>Comment on comment id:<%= comment.comment_id %></td>
+          <td  style="width:15%">Comment on comment id:<%= comment.comment_id %></td>
         <% end %>
-        <td><%= link_to 'Show', comment %></td>
+        <td  style="width:5%"><%= link_to 'Show', comment %></td>
         <%# show the Edit link only on the comments that the currently logged in user can edit (per our authorize method for editing comments)%>
         <% if current_user && comment.user == current_user %>
-        <td><%= link_to 'Edit', edit_comment_path(comment) %></td>
+          <td  style="width:5%"><%= link_to 'Edit', edit_comment_path(comment) %></td>
+        <%else%>
+          <td  style="width:5%">&nbsp;</td>
         <%end%>
 
         <%# Much like posts the Destroy action has been removed for the time being
@@ -47,6 +51,6 @@
 </table>
 
 <br>
-<% if current_user %>
-  <%= link_to 'New Comment', new_comment_path %>
-<% end %>
+<%# if current_user %>
+  <%#= link_to 'New Comment', new_comment_path %>
+<%# end %>

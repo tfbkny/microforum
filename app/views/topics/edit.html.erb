@@ -1,6 +1,15 @@
-<h1>Editing Topic</h1>
+<table border="0" width="100%">
+  <tr>
+    <td style="width:40%;">&nbsp;<td>
+    <td style="width:20%;">
+      <div style="text-align:left;margin-left:2%; line-height:2em;color:#2095C9">
+        <h1>Editing Topic</h1>
+      </div>
+      <%= render 'form' %>
+      <%= link_to 'Show', @topic %> |
+      <%= link_to 'Back', topics_path %>
+    </td>
 
-<%= render 'form' %>
-
-<%= link_to 'Show', @topic %> |
-<%= link_to 'Back', topics_path %>
+  <td style="width:40%;">&nbsp;</td>
+</tr>
+</table>
