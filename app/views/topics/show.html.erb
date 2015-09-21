@@ -1,26 +1,35 @@
-<p id="notice"><%= notice %></p>
+<!-- <p id="notice"><%#= notice %></p> -->
+<table border="0" width="100%" style="margin-top:2%;">
+  <tr>
+    <td style="width:41%;">&nbsp;<td>
 
-<p>
-  <strong>Title:</strong>
-  <%= @topic.title %>
-</p>
+    <td style="width:18%;">
+      <p>
+        <strong>Title:</strong>
+        <%= @topic.title %>
+      </p>
 
-<p>
-  <strong>User:</strong>
-  <%# Added full_name for display purposes originally would instead show the object hex such <User:0x...> when using @topic.user %>
-  <%full_name = @topic.user.first_name + " " + @topic.user.last_name %>
-  <%= full_name %>
-</p>
+      <p>
+        <strong>User:</strong>
+        <%# Added full_name for display purposes originally would instead show the object hex such <User:0x...> when using @topic.user %>
+        <%full_name = @topic.user.first_name + " " + @topic.user.last_name %>
+        <%= full_name %>
+      </p>
 
-<p>
-  <strong>Archived:</strong>
-  <%= @topic.archived %>
-</p>
+      <p>
+        <strong>Archived:</strong>
+        <%= @topic.archived %>
+      </p>
 
-<p>
-  <strong>Votes:</strong>
-  <%= @topic.votes %>
-</p>
+      <p>
+        <strong>Votes:</strong>
+        <%= @topic.votes %>
+      </p>
 
-<%= link_to 'Edit', edit_topic_path(@topic) %> |
-<%= link_to 'Back', topics_path %>
+      <%= link_to 'Edit', edit_topic_path(@topic) %> |
+      <%= link_to 'Back', topics_path %>
+    </td>
+
+    <td style="width:41%;">&nbsp;</td>
+    </tr>
+    </table>
