@@ -15,9 +15,9 @@ RSpec.describe 'Login Feature', type: :feature do
     click_button('Log In')
     expect(current_url).to eq "http://www.example.com/sessions"
     # Create New Topic process
-    visit('/') #must add as it won't read the redidect set in /sessions
+    visit('/') #must add as it won't read the redidect_to root_url set in /sessions
 binding.pry
     click_link('New Topic')
-    
+
   end
 end
