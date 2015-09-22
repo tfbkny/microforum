@@ -37,9 +37,14 @@ gem 'redcarpet', '~> 2.3.0'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug'
-  gem 'pry'
-  gem 'seed_dump'
+  gem 'byebug' # Default Debugger
+  gem 'pry-rails' # Debugging Console (Added)
+  gem 'rspec-rails' # Testing Framework
+  gem 'seed_dump' # !!!DOES NOT WORK WITH Foreign Keys!!!
+  gem 'better_errors' # Debugger Shows erros in browser and gives abilty to use console within the same page
+  gem 'capybara' # Intagration framework (extends the Testing framework, in this case rspec-rails)
+  gem 'poltergeist' # Poltergeist is a driver for Capybara that allows you to run your tests on a headless WebKit browser, provided by PhantomJS (note: PhantomJS is what enables providing screenshots of the webpages)
+  gem 'ffaker'# Creates fake content for testing purposes
 end
 
 group :development do
